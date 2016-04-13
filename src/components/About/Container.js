@@ -1,27 +1,33 @@
 /* eslint-disable react/prefer-stateless-function */
 import { default as React, Component, PropTypes } from 'react'
 import { default as About } from './About'
-import { Page } from '..'
-import { Form } from '../Contact'
+import { Page } from 'components'
+import { default as LeadForm } from '@leadgrabr/lead-form'
 import { Section, SectionHeader, Text } from 'rebass'
 import { Flex, Box } from 'reflexbox'
-import { default as Gallery } from '../Gallery'
-import { connect } from 'react-redux'
-import { constants } from '../../redux/modules/app'
+import { default as Gallery } from 'Gallery'
+import { connect } from 'redux-await'
+import { constants, createLead } from 'redux/modules/app'
 const { medium } = constants.BREAKPOINTS
+const { SUBMIT_LEAD } = constants
 
-@connect((state) => ({
-    width: state.app.width
-}))
+@connect(
+    (state) => ({
+        width: state.app.width
+    }),
+    { submit: createLead }
+)
 
 export default class Container extends Component {
 
     static propTypes = {
+        statuses: PropTypes.object.isRequired,
+        submit: PropTypes.func.isRequired,
         width: PropTypes.number.isRequired
     };
 
     render() {
-        const { width } = this.props
+        const { statuses, submit, width } = this.props
         const contactBoxProps = {
             mb: 2,
             px: 2,
@@ -52,7 +58,10 @@ export default class Container extends Component {
                         />
                         <Flex column={!(width > medium)}>
                             <Box {...contactBoxProps}>
-                                <Form theme="default"/>
+                                <LeadForm
+                                    status={statuses[SUBMIT_LEAD]}
+                                    submit={submit}
+                                />
                             </Box>
                             <Box {...contactBoxProps}>
                                 <Gallery

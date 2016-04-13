@@ -1,7 +1,7 @@
 export { default as About } from './About/Container'
 export { default as App } from './App'
 export { default as BottomBar } from './BottomBar'
-export { default as Contact } from './Contact/Container'
+export { default as Contact } from './Contact'
 export { default as DevTools } from './DevTools'
 export { default as Gallery } from './Gallery/Container'
 export { default as GoogleMap } from './GoogleMap'

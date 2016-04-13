@@ -35,7 +35,7 @@ export function createLead(data) {
         type: SUBMIT_LEAD,
         AWAIT_MARKER,
         payload: {
-            [SUBMIT_LEAD]: client.post('leads', { data })
+            [SUBMIT_LEAD]: client.post('Lead', { data })
         }
     }
 }

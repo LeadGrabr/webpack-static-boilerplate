@@ -5,6 +5,7 @@
   "main": "webpack.config.js",
   "dependencies": {},
   "devDependencies": {
+    "@leadgrabr/lead-form": "0.0.3",
     "api-bro": "^1.3.9",
     "autobind-decorator": "^1.3.3",
     "babel-core": "^6.7.6",
@@ -73,7 +74,7 @@
     "start-dev": {
       "command": "webpack-dev-server --progress --hot --colors --history-api-fallback --display-error-details",
       "env": {
-        "API_ENDPOINT": "http://api.leadgrabr.com/api",
+        "API_ENDPOINT": "http://api.leadgrabr.com/api/v1",
         "BABEL_ENV": "development",
         "DEVELOPMENT": true,
         "DEVTOOLS": true,
@@ -83,7 +84,7 @@
     "build-dev": {
       "command": "webpack",
       "env": {
-        "API_ENDPOINT": "http://api.leadgrabr.com/api",
+        "API_ENDPOINT": "http://api.leadgrabr.com/api/v1",
         "BABEL_ENV": "production",
         "NODE_ENV": "production",
         "GOOGLE_MAPS_APIKEY": "AIzaSyCgDmnVgrSncTpR8vgsyEKSBUm1iXHM7Y4"
