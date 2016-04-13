@@ -1,6 +1,6 @@
-import React, { PropTypes } from 'react'
+import { default as React, PropTypes } from 'react'
 import { renderToString } from 'react-dom/server'
-import Helmet from 'react-helmet'
+import { default as Helmet } from 'react-helmet'
 
 const Html = ({ assets, component }) => {
     const content = component ? renderToString(component) : ''
@@ -13,6 +13,11 @@ const Html = ({ assets, component }) => {
                 {head.meta.toComponent()}
                 {head.link.toComponent()}
                 {head.script.toComponent()}
+                <script
+                    async
+                    defer
+                    src={`https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_MAPS_APIKEY}`}
+                />
             </head>
             <body>
                 <div

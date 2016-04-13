@@ -20,7 +20,7 @@ const intitialState = {
     width: 0
 }
 
-export function setScreenSize(height, width) {
+export function setScreenSize({ height, width }) {
     return {
         type: SCREEN_DIMENSIONS,
         payload: {
@@ -30,22 +30,12 @@ export function setScreenSize(height, width) {
     }
 }
 
-export function createLead({ name, email, phone }) {
+export function createLead(data) {
     return {
         type: SUBMIT_LEAD,
         AWAIT_MARKER,
         payload: {
-            [SUBMIT_LEAD]: client.post({
-                data: `
-                    mutation {
-                        createLead(
-                            name: \"${name}\",
-                            email: \"${email}\",
-                            phone: \"${phone}\"
-                        ) { id, name, email, phone }
-                    }
-                `
-            })
+            [SUBMIT_LEAD]: client.post('leads', { data })
         }
     }
 }

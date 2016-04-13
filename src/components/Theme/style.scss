@@ -3,12 +3,9 @@
 * { box-sizing: border-box }
 
 body {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
     line-height: 1.5;
-}
-
-h1 {
-    font-family: "Dancing Script", "Brush Script MT", cursive;
+    font-weight: 300;
 }
 
 a {
@@ -18,4 +15,8 @@ a {
 
 button[disabled] {
     cursor: not-allowed !important;
+}
+
+input, textarea {
+    background-color: transparentize($white, 0.75);
 }

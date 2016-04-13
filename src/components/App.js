@@ -1,11 +1,9 @@
-import React, { Component, PropTypes } from 'react'
+import { default as React, Component, PropTypes } from 'react'
 import { Theme } from '.'
-import Helmet from 'react-helmet'
-import { Container } from 'rebass'
+import { default as Helmet } from 'react-helmet'
 import { setScreenSize } from '../redux/modules/app'
 import { connect } from 'react-redux'
-import { constants } from '../redux/modules/app'
-const { small } = constants.BREAKPOINTS
+import { default as joifulReactForms } from './JoifulReactForms'
 
 @connect(() => ({}), { screenSize: setScreenSize })
 
@@ -14,15 +12,35 @@ export default class App extends Component {
     static propTypes = {
         children: PropTypes.node,
         screenSize: PropTypes.func.isRequired
+    };
+
+    static childContextTypes = {
+        joifulReactForms: PropTypes.object
+    };
+
+    getChildContext() {
+        return {
+            joifulReactForms: {
+                JoifulInput: {
+                    types: joifulReactForms.types
+                }
+            }
+        }
     }
 
     componentDidMount() {
         // 🌎
         const { screenSize } = this.props
-        const height = $(window).height()
-        const width = $(window).width()
-        window.addEventListener('resize', () => screenSize(height, width))
-        screenSize(height, width)
+        window.addEventListener('resize', () =>
+            screenSize({
+                height: $(window).height(),
+                width: $(window).width()
+            })
+        )
+        screenSize({
+            height: $(window).height(),
+            width: $(window).width()
+        })
     }
 
     render() {
@@ -35,10 +53,10 @@ export default class App extends Component {
                         { rel: 'stylesheet', href: '//cdnjs.cloudflare.com/ajax/libs/normalize/4.0.0/normalize.min.css' },
                         { rel: 'stylesheet', href: '/style.css' },
                         { rel: 'shortcut icon', href: '/favicon.png' },
-                        { rel: 'stylesheet', href: '//fonts.googleapis.com/css?family=Dancing+Script:400,700' }
+                        { rel: 'stylesheet', href: '//fonts.googleapis.com/css?family=Raleway:300,600' }
                     ]}
                     meta={[
-                        { name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densityDpi=device-dpi' }
+                        { name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0' }
                     ]}
                     script={[
                         { src: '//code.jquery.com/jquery-2.1.4.min.js' },
@@ -48,16 +66,15 @@ export default class App extends Component {
                     title="Ann Arbor Pictures"
                 />
                 <Theme>
-                    <Container
+                    <div
                         style={{
                             marginLeft: 'auto',
                             marginRight: 'auto',
-                            maxWidth: small,
                             width: '100%'
                         }}
                     >
                         {children}
-                    </Container>
+                    </div>
                 </Theme>
             </div>
         )

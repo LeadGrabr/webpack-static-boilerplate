@@ -1,16 +1,9 @@
-import TextElement from './TextElement'
+import TextInput from './TextInput'
+import Textarea from './Textarea'
 
 export default {
-    elementTypes: {
-        text: TextElement
-    },
-    options: {
-        language: {
-            string: {
-                regex: {
-                    base: 'with value "{{!value}}" is invalid'
-                }
-            }
-        }
+    types: {
+        text: TextInput,
+        textarea: Textarea
     }
 }
