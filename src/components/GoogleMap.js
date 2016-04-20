@@ -114,6 +114,7 @@ export default class _GoogleMap extends Component {
                     {this.state.markers.map((marker, index) =>
                         <Marker
                             {...marker}
+                            key={index}
                             onRightclick={this.handleMarkerRightclick.bind(this, index)}
                         />
                     )}

@@ -26,7 +26,13 @@ const colors = {
 }
 
 const scale = [0, 10, 25, 48, 64]
-const fontSizes = [64, 37, 27, 19, 18, 14, 12]
+const fontSizes = [64, 30, 27, 19, 18, 14, 12]
+
+const breakpoints = {
+    small: 425,
+    medium: 768,
+    large: 1024
+}
 
 export default class Theme extends Component {
 
@@ -35,12 +41,14 @@ export default class Theme extends Component {
     };
 
     static childContextTypes = {
+        breakpoints: PropTypes.object,
         rebass: PropTypes.object,
         reflexbox: PropTypes.object
     };
 
     getChildContext() {
         return {
+            breakpoints,
             rebass: {
                 colors,
                 fontSizes,

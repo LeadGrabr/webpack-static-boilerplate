@@ -30,12 +30,17 @@ export function setScreenSize({ height, width }) {
     }
 }
 
-export function createLead(data) {
+export function createLead(data = {}) {
     return {
         type: SUBMIT_LEAD,
         AWAIT_MARKER,
         payload: {
-            [SUBMIT_LEAD]: client.post('Lead', { data })
+            [SUBMIT_LEAD]: client.post('Lead', {
+                data: {
+                    ...data,
+                    _audience: process.env.AUDIENCE
+                }
+            })
         }
     }
 }

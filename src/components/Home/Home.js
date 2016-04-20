@@ -3,7 +3,19 @@ import { Base, Heading, Section, SectionHeader, Text } from 'rebass'
 import { BottomBar, Page, GoogleMap } from 'components'
 import { default as Banner } from './Banner'
 import { default as Gallery } from 'Gallery'
-import { default as About } from 'About'
+import { default as Testimonials } from '@leadgrabr/testimonials'
+import { default as headshotOne } from './headshot-one.jpg'
+import { default as headshotTwo } from './headshot-two.jpg'
+import { default as BrandBadges } from '@leadgrabr/brand-badges'
+import { default as Heart } from 'react-icons/lib/go/heart'
+import { default as Organization } from 'react-icons/lib/go/organization'
+import { default as Location } from 'react-icons/lib/go/location'
+
+const testimonialText = `
+    Wisi magna pri ei, equidem tibique an eum, per te quod similique.
+    Ne quas malorum labitur eos, nam ei impetus veritus. Ex dico diceret
+    ancillae duo. Vel legendos pericula ea, per esse rationibus ut.
+`
 
 const Home = (props, { rebass: { colors } }) =>
     <Page>
@@ -17,8 +29,12 @@ const Home = (props, { rebass: { colors } }) =>
                 Fall in Love with Ann Arbor Pictures!
             </Heading>
             <Text style={{ textAlign: 'center' }}>
-                Check out some of the latest and greatest
-                photographs from photographers right here in Ann Arbor.
+                Whether you're planning an engagement,
+                need lifestyle photography, or are just
+                looking to document your latest adventures,
+                Ann Arbor Pictures has the equipment and
+                the expertise to get you your perfect
+                image in a unique vintage style.
             </Text>
             <Gallery
                 count={6}
@@ -31,10 +47,46 @@ const Home = (props, { rebass: { colors } }) =>
         <Section style={{ backgroundColor: colors.info }}>
             <Page.Content>
                 <SectionHeader
-                    heading="Some other alternate heading"
-                    style={{ textAlign: 'center' }}
+                    heading="Customer Testimonials"
                 />
-                <About/>
+                <Testimonials
+                    testimonials={[
+                        {
+                            img: headshotOne,
+                            name: 'John Appleseed',
+                            text: testimonialText
+                        }, {
+                            img: headshotTwo,
+                            name: 'Barbara Foo',
+                            text: testimonialText
+                        }
+                    ]}
+                />
+            </Page.Content>
+        </Section>
+        <Section>
+            <Page.Content>
+                <SectionHeader
+                    heading="Why We're Great"
+                />
+                <BrandBadges
+                    backgroundColor="primary"
+                    badges={[
+                        {
+                            icon: Heart,
+                            heading: 'You\'ll love your photos'
+                        },
+                        {
+                            icon: Organization,
+                            heading: 'Our organization is strong!'
+                        },
+                        {
+                            icon: Location,
+                            heading: 'We\'re local!'
+                        }
+                    ]}
+                    color="secondary"
+                />
             </Page.Content>
         </Section>
         <Base>

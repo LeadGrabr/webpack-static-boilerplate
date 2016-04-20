@@ -5,11 +5,13 @@
   "main": "webpack.config.js",
   "dependencies": {},
   "devDependencies": {
-    "@leadgrabr/lead-form": "0.0.3",
+    "@leadgrabr/brand-badges": "0.0.2",
+    "@leadgrabr/lead-form": "0.0.8",
+    "@leadgrabr/testimonials": "0.0.3",
     "api-bro": "^1.3.9",
     "autobind-decorator": "^1.3.3",
     "babel-core": "^6.7.6",
-    "babel-eslint": "^6.0.2",
+    "babel-eslint": "^6.0.3",
     "babel-loader": "^6.2.4",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-polyfill": "^6.7.4",
@@ -21,31 +23,34 @@
     "can-use-dom": "^0.1.0",
     "clean-webpack-plugin": "^0.1.8",
     "color": "^0.11.1",
+    "commitizen": "^2.8.0",
     "css-loader": "^0.23.1",
+    "cz-conventional-changelog": "1.1.5",
     "eslint": "^2.5.3",
-    "eslint-config-airbnb": "^6.2.0",
+    "eslint-config-airbnb": "^7.0.0",
     "eslint-loader": "^1.3.0",
     "eslint-plugin-import": "^1.4.0",
-    "eslint-plugin-jsx-control-statements": "^1.1.0",
-    "eslint-plugin-react": "^4.3.0",
+    "eslint-plugin-jsx-a11y": "^0.6.2",
+    "eslint-plugin-jsx-control-statements": "^2.1.0",
+    "eslint-plugin-react": "^5.0.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
+    "ghooks": "^1.2.0",
     "joi": "^8.0.5",
-    "joi-phone": "0.0.1",
-    "joiful-react-forms": "0.1.2",
+    "joiful-react-forms": "0.1.3",
     "jsx-control-statements": "^3.1.0",
     "node-sass": "^3.4.2",
     "react": "^15.0.1",
     "react-addons-update": "^15.0.1",
     "react-dom": "^15.0.1",
     "react-google-maps": "^4.9.1",
-    "react-helmet": "^3.0.0",
-    "react-icons": "^1.0.3",
+    "react-helmet": "^3.0.2",
+    "react-icons": "^2.0.1",
     "react-redux": "^4.4.2",
     "react-router": "^2.0.1",
     "react-router-redux": "^4.0.2",
     "rebass": "^0.2.4",
-    "redux": "^3.3.1",
+    "redux": "^3.5.1",
     "redux-async-connect": "^1.0.0-rc4",
     "redux-await": "^5.0.1",
     "redux-devtools": "^3.1.1",
@@ -56,11 +61,12 @@
     "redux-simplestorage": "0.0.4",
     "reflexbox": "^1.1.0",
     "sass-loader": "^3.2.0",
-    "scroll-behavior": "^0.3.4",
+    "scroll-behavior": "^0.4.0",
     "serialize-javascript": "^1.2.0",
     "static-site-generator-webpack-plugin": "^2.0.1",
     "superagent": "^1.8.3",
     "url-loader": "^0.5.7",
+    "validate-commit-msg": "^2.5.0",
     "webpack": "^1.12.14",
     "webpack-dev-server": "^1.14.1"
   },
@@ -68,7 +74,8 @@
     "start": "npm run start-dev",
     "dev": "better-npm-run start-dev",
     "build-dev": "better-npm-run build-dev",
-    "deploy-dev": "aws s3 sync ./dist s3://dev.annarbor.pictures --exclude '.DS_Store' --profile home"
+    "deploy-dev": "aws s3 sync ./dist s3://dev.annarbor.pictures --exclude '.DS_Store' --profile home",
+    "lint": "eslint -c .eslintrc src"
   },
   "betterScripts": {
     "start-dev": {
@@ -89,6 +96,27 @@
         "NODE_ENV": "production",
         "GOOGLE_MAPS_APIKEY": "AIzaSyCgDmnVgrSncTpR8vgsyEKSBUm1iXHM7Y4"
       }
+    }
+  },
+  "config": {
+    "ghooks": {
+      "pre-commit": "npm run lint",
+      "commit-msg": "validate-commit-msg"
+    },
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    },
+    "validate-commit-msg": {
+      "types": [
+        "issue",
+        "master",
+        "revert"
+      ],
+      "warnOnFail": false,
+      "maxSubjectLength": 100,
+      "subjectPattern": ".+",
+      "subjectPatternErrorMsg": "subject does not match subject pattern!",
+      "helpMessage": ""
     }
   },
   "repository": {

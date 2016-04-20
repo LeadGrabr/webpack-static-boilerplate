@@ -2,11 +2,8 @@ import { default as React } from 'react'
 import { Menu, NavItem } from 'rebass'
 import { Link } from 'react-router'
 
-const MainNav = () =>
-    <Menu
-        backgroundColor="default"
-        color="secondary"
-    >
+const MainNav = (props) =>
+    <Menu {...props}>
         <NavItem
             is={Link}
             to="/"
@@ -24,9 +21,6 @@ const MainNav = () =>
             to="/gallery"
         >
             Photo Gallery
-        </NavItem>
-        <NavItem>
-            Blog
         </NavItem>
         <NavItem
             is={Link}
