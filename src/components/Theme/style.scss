@@ -1,22 +1,44 @@
 @import "constants";
+@import "rebass.overrides";
 
 * { box-sizing: border-box }
 
 body {
-    font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    line-height: 1.5;
-    font-weight: 300;
+  color: $black;
+  font-family: "Oswald", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: $font-weight-base;
+  line-height: 1.5;
 }
 
 a {
-    color: $black;
-    text-decoration: none;
+  color: $black;
+  text-decoration: none;
+}
+
+button:focus {
+  outline: none;
 }
 
 button[disabled] {
-    cursor: not-allowed !important;
+  cursor: not-allowed !important;
 }
 
-input, textarea {
-    background-color: transparentize($white, 0.75);
+::-webkit-input-placeholder {
+  color: $gray;
+  font-weight: $font-weight-base;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+  color: $gray;
+  font-weight: $font-weight-base;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+  color: $gray;
+  font-weight: $font-weight-base;
+}
+
+:-ms-input-placeholder {  
+  color: $gray;
+  font-weight: $font-weight-base;
 }

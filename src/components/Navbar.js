@@ -1,85 +1,106 @@
 import { default as React, Component, PropTypes } from 'react'
-import { Drawer, Fixed, NavItem, Toolbar } from 'rebass'
-import { IndexLink } from 'react-router'
+import { Arrow, Drawer, Dropdown, DropdownMenu, Fixed, Toolbar, ButtonCircle } from 'rebass'
 import { Flex } from 'reflexbox'
-import { MainNav } from '.'
 import { default as Close } from 'react-icons/lib/md/close'
-import { default as Menu } from 'react-icons/lib/md/menu'
-import { default as color } from 'color'
+import { default as Hamburger } from 'react-icons/lib/md/menu'
+import { PrimaryNav } from 'components'
+import { connect } from 'react-redux'
 
+@connect(({ app: { width } }) => ({ width }))
 
 export default class Navbar extends Component {
 
-    static contextTypes = {
-        rebass: PropTypes.object.isRequired
-    };
+  static contextTypes = {
+    breakpoints: PropTypes.object.isRequired,
+    colors: PropTypes.object.isRequired
+  };
 
-    state = {}
+  static propType = {
+    width: PropTypes.number.isRequired
+  };
 
-    render() {
-        const { rebass: { colors } } = this.context
-        const { drawer } = this.state
-        const iconSize = 20
-        return (
-            <Fixed style={{ width: '100%' }}>
-                <Toolbar
-                    style={{
-                        boxShadow: `0px -4px 10px ${color(colors.black).alpha(0.4).rgbString()}`
-                    }}
+  state = {}
+
+  render () {
+    const { drawer, menu } = this.state
+    const { width } = this.props
+    const { breakpoints: { small }, colors: { blue } } = this.context
+    const isSmall = width <= small
+    const buttonCircleProps = { backgroundColor: blue }
+    return (
+      <If condition={width}>
+        <Fixed style={{ width: '100%' }}>
+          <Toolbar pt={1} style={{ margin: 'auto', maxWidth: small }}>
+            <Flex
+              align='center'
+              justify='center'
+              style={{ width }}
+            >
+              <Choose>
+                <When condition={isSmall}>
+                  <ButtonCircle
+                    {...buttonCircleProps}
+                    onClick={() => this.setState({ drawer: true })}
+                  >
+                    <Hamburger />
+                  </ButtonCircle>
+                </When>
+                <Otherwise>
+                  <ButtonCircle
+                    {...buttonCircleProps}
+                    onClick={() => this.setState({ menu: true })}
+                  >
+                    <Hamburger />
+                  </ButtonCircle>
+                  <Dropdown>
+                    <DropdownMenu
+                      onDismiss={() => this.setState({ menu: false })}
+                      open={menu}
+                      style={{
+                        left: -90,
+                        top: 16
+                      }}
+                    >
+                      <Arrow
+                        color='primary'
+                        direction='up'
+                        style={{
+                          position: 'absolute',
+                          top: -7,
+                          left: '50%',
+                          marginLeft: -7 / 2
+                        }}
+                      />
+                      <PrimaryNav />
+                    </DropdownMenu>
+                  </Dropdown>
+                </Otherwise>
+              </Choose>
+            </Flex>
+            <Drawer
+              backgroundColor='primary'
+              color='default'
+              open={drawer}
+              pt={1}
+              size={width}
+            >
+              <Flex
+                align='center'
+                justify='center'
+                mb={2}
+              >
+                <ButtonCircle
+                  {...buttonCircleProps}
+                  onClick={() => this.setState({ drawer: false })}
                 >
-                    <Flex
-                        align="center"
-                        justify="center"
-                        style={{
-                            width: '100%'
-                        }}
-                    >
-                        <Menu
-                            onClick={() => this.setState({ drawer: true })}
-                            size={iconSize}
-                            style={{
-                                marginTop: (iconSize / 2) * -1,
-                                position: 'absolute',
-                                top: '50%'
-                            }}
-                        />
-                        <NavItem
-                            is={IndexLink}
-                            style={{
-                                fontWeight: 600,
-                                margin: 'auto'
-                            }}
-                            to="/"
-                        >
-                            AnnArbor Pictures
-                        </NavItem>
-                    </Flex>
-                    <Drawer
-                        backgroundColor="secondary"
-                        color="primary"
-                        open={drawer}
-                        style={{
-                            boxShadow: (
-                                !drawer
-                                ? null
-                                : `0px 0px 5px ${color(colors.black).alpha(0.2).rgbString()}`
-                            )
-                        }}
-                        width="100%"
-                    >
-                        <Flex
-                            justify="flex-end"
-                            mb={2}
-                        >
-                            <Close
-                                onClick={() => this.setState({ drawer: false })}
-                                size={iconSize}
-                            />
-                        </Flex>
-                        <MainNav/>
-                    </Drawer>
-                </Toolbar>
-            </Fixed>
-        )
-    }
+                  <Close />
+                </ButtonCircle>
+              </Flex>
+              <PrimaryNav />
+            </Drawer>
+          </Toolbar>
+        </Fixed>
+      </If>
+    )
+  }
 }

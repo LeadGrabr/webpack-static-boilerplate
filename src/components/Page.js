@@ -1,68 +1,74 @@
-import { default as React, PropTypes } from 'react'
-import { Container, Heading, Text } from 'rebass'
+import React, { PropTypes } from 'react'
+import { Base, Heading, Text } from 'rebass'
 import { Flex } from 'reflexbox'
-import { Navbar } from '.'
+import { Navbar } from 'components'
 
 const sharedPropTypes = {
-    children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired
 }
 
 const Page = ({ children }) =>
-    <Flex
-        column
-        justify="center"
+  <Flex
+    column
+    justify='center'
+  >
+    <Navbar />
+    <Base
+      mt={3}
+      style={{
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        width: '100%'
+      }}
     >
-        <Navbar/>
-        <div style={{ marginTop: 48 }}>
-            {children}
-        </div>
-    </Flex>
+      {children}
+    </Base>
+  </Flex>
 
 Page.propTypes = {
-    ...sharedPropTypes
+  ...sharedPropTypes
 }
 
 const Title = ({ children }) =>
-    <Heading
-        level={1}
-        mb={1}
-        mt={1}
-        style={{ textAlign: 'center' }}
-    >
-        {children}
-    </Heading>
+  <Heading
+    level={1}
+    mb={2}
+    mt={3}
+    style={{ textAlign: 'center' }}
+  >
+    {children}
+  </Heading>
 
 Title.propTypes = {
-    ...sharedPropTypes
+  ...sharedPropTypes
 }
 
 Page.Title = Title
 
 const Subtitle = ({ children }) =>
-    <Text
-        mb={1}
-        style={{ textAlign: 'center' }}
-    >
-        {children}
-    </Text>
+  <Text
+    mb={3}
+    style={{ textAlign: 'center' }}
+  >
+    {children}
+  </Text>
 
 Subtitle.propTypes = {
-    ...sharedPropTypes
+  ...sharedPropTypes
 }
 
 Page.Subtitle = Subtitle
 
 const Content = ({ children }) =>
-    <Container
-        my={3}
-        px={2}
-    >
-        {children}
-    </Container>
+  <Base
+    my={2}
+    px={2}
+  >
+    {children}
+  </Base>
 
 Content.propTypes = {
-    ...sharedPropTypes,
-    fluid: PropTypes.bool
+  ...sharedPropTypes
 }
 
 Page.Content = Content
