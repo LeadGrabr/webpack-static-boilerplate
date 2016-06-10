@@ -13,14 +13,8 @@ const Html = ({ assets, component }) => {
         {head.meta.toComponent()}
         {head.link.toComponent()}
         {head.script.toComponent()}
-        <script
-                    async
-                    defer
-                    src={`https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_MAPS_APIKEY}`}
-                />
       </head>
       <body>
-
         <div
           dangerouslySetInnerHTML={{ __html: content }}
           id='content'

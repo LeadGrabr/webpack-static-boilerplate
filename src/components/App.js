@@ -1,9 +1,8 @@
 import React, { Component, PropTypes } from 'react'
-import { Theme } from 'components'
+import { Input, Theme } from 'components'
 import { default as Helmet } from 'react-helmet'
 import { connect } from 'react-redux'
 import { setScreenSize } from 'redux/modules/app'
-import joifulReactForms from 'JoifulReactFormsOverrides'
 
 @connect(() => ({}), { screenSize: setScreenSize })
 
@@ -22,8 +21,9 @@ export default class App extends Component {
     return {
       joifulReactForms: {
         JoifulInput: {
-          types: joifulReactForms.types
-                
+          types: {
+            text: Input
+          }
         }
       }
     }
@@ -57,27 +57,19 @@ export default class App extends Component {
             { rel: 'stylesheet', href: '//fonts.googleapis.com/css?family=Oswald:400,700,300' }
           ]}
           meta={[
-        
-           { name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0' }
+            { name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0' }
           ]}
           script={[
             { src: '//code.jquery.com/jquery-2.1.4.min.js' },
             { src: '//cdnjs.cloudflare.com/ajax/libs/lodash.js/4.7.0/lodash.min.js' }
             /* eslint-enable max-len */
           ]}
-          title='STitle
+          title='STitle'
           titleTemplate='BTemplate- %s'
-
-
-
-
-
-
         />
         <Theme>
           {this.props.children}
         </Theme>
-
       </div>
     )
   }

@@ -1,24 +1,3 @@
-const routes = [
-  '/',
-  '/better-react-spinkit/',
-  '/better-react-spinkit/chasing-dots/',
-  '/better-react-spinkit/circle/',
-  '/better-react-spinkit/cube-grid/',
-  '/better-react-spinkit/double-bounce/',
-  '/better-react-spinkit/pulse/',
-  '/better-react-spinkit/rotating-plane/',
-  '/better-react-spinkit/three-bounce/',
-  '/better-react-spinkit/wandering-cubes/',
-  '/better-react-spinkit/wave/',
-  '/better-react-spinkit/wordpress/',
-  '/contact/',
-  '/contact/failure/',
-  '/contact/success/',
-  '/portfolio/',
-  '/redux-simplestorage/',
-  '/resume/'
-]
-
 const path = require('path')
 const webpack = require('webpack')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
@@ -26,12 +5,7 @@ const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin'
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const SitemapPlugin = require('sitemap-webpack-plugin')
 
-const routes = [
-    '/',
-    '/about/',
-    '/contact/',
-    '/gallery/'
-]
+const routes = ['/']
 
 module.exports = {
 

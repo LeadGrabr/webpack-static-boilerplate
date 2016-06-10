@@ -18,7 +18,7 @@ if (process.env.DEVELOPMENT && process.env.DEVTOOLS) {
   })
 }
 
-if (typeof document !== 'undefined') {
+if (canUseDOM) {
   let history = withScroll(browserHistory)
   const store = createStore(history)
   history = syncHistoryWithStore(history, store)
@@ -41,6 +41,13 @@ export default ({ assets, path }, callback) => {
   match({ routes, location }, (error, redirectLocation, props) => {
     if (error) {
       throw new Error(error)
+    }
+
+    if (!props) {
+      throw new Error(`
+        Something is wrong with your routing configuration.
+        Check the routes object in webpack.config.js.
+      `)
     }
 
     const html = renderToString(
