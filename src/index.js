@@ -60,6 +60,6 @@ export default ({ assets, path }, callback) => {
         }
       />
     )
-    callback(null, html)
+    callback(null, `<!doctype html>${html}`)
   })
 }
