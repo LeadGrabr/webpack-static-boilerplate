@@ -1,44 +1,9 @@
-@import "constants";
-@import "rebass.overrides";
 
-* { box-sizing: border-box }
+@import 'constants';
+@import url(http://fonts.googleapis.com/css?family=Roboto:100,300,400,400italic,700,700italic);
 
-body {
-  color: $black;
-  font-family: "Oswald", "Helvetica Neue", Helvetica, Arial, sans-serif;
+html, body {
+  font-family: 'Roboto', sans-serif;
   font-weight: $font-weight-base;
   line-height: 1.5;
-}
-
-a {
-  color: $black;
-  text-decoration: none;
-}
-
-button:focus {
-  outline: none;
-}
-
-button[disabled] {
-  cursor: not-allowed !important;
-}
-
-::-webkit-input-placeholder {
-  color: $gray;
-  font-weight: $font-weight-base;
-}
-
-:-moz-placeholder { /* Firefox 18- */
-  color: $gray;
-  font-weight: $font-weight-base;
-}
-
-::-moz-placeholder {  /* Firefox 19+ */
-  color: $gray;
-  font-weight: $font-weight-base;
-}
-
-:-ms-input-placeholder {  
-  color: $gray;
-  font-weight: $font-weight-base;
 }
